@@ -8,3 +8,6 @@ $(OBJS): %.o:%.c
 	$(CC) $(CFLAGS) -c -o $@ $^
 main: $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
+
+clean:
+	$(RM) *.o main
