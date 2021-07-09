@@ -6,7 +6,7 @@ static inline uintptr_t align_up(uintptr_t sz, size_t alignment)
     // aliment = 7 = 0b111; mask = 0b110 = 6
     uintptr_t mask = alignment - 1;
     if ((alignment & mask) == 0) {  /* power of two? */
-        return (sz & ~mask) + (((sz & mask) + mask) & alignment);       
+        return (sz & ~mask) + (((sz & mask) + mask) & (mask + 1));       
     }
     // sz = 7 * k + r
     // (7 * k + r + 6) / 7 * 7
