@@ -8,7 +8,7 @@ all: main
 $(OBJS): %.o:%.c
 	$(CC) $(CFLAGS) $(LIBS) -c -o $@ $^
 main: $(OBJS)
-	$(CC) $(CFLAGS) $(LIBS) -o $@ $^
+	$(CC) $(CFLAGS) -static $(LIBS)  -o $@ $^ /usr/lib/x86_64-linux-gnu/libpthread.a
 
 clean:
 	$(RM) *.o main

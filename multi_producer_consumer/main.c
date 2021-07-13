@@ -1,4 +1,5 @@
 #include <threads.h>
+#include <stdio.h>
 
 enum { Q_OK, Q_ERROR };
 
@@ -129,7 +130,7 @@ void *con_pop(con_queue_t *queue)
     }
 
     /* Queue not empty: retrieve data and rewire */
-    void *return_value = node->value; // FIXME: BBB
+    void *return_value = node->next->value; // FIXME: BBB
     queue->first = new_header; //FIXME: CCC
 
     mtx_unlock(queue->first_mutex);
@@ -185,6 +186,8 @@ int pop_thread(void *queue_ptr)
 
 int main()
 {
+
+    printf("GG");
     thrd_t push_threads[N_PUSH_THREADS], pop_threads[N_POP_THREADS];
 
     con_queue_t *queue = con_init();
